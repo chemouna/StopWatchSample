@@ -6,7 +6,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    // TODO: make a wrapper around Chronometer with this
     private var isTimerRunning = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,13 +14,13 @@ class MainActivity : AppCompatActivity() {
 
         start.setOnClickListener {
             if (isTimerRunning) {
-                timer.start()
-                start.text = getString(R.string.stop)
-                isTimerRunning = true
-            } else {
                 timer.stop()
                 start.text = getString(R.string.start)
                 isTimerRunning = false
+            } else {
+                timer.start()
+                start.text = getString(R.string.stop)
+                isTimerRunning = true
             }
         }
     }
