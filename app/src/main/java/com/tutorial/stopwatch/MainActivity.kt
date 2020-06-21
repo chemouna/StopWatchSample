@@ -2,26 +2,30 @@ package com.tutorial.stopwatch
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-
-    private var isTimerRunning = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        start.setOnClickListener {
-            if (isTimerRunning) {
+        val viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        viewModel.timerState().observe(this, Observer { isRunning ->
+            if (isRunning) {
                 timer.stop()
-                start.text = getString(R.string.start)
-                isTimerRunning = false
+                toggle_timer.text = getString(R.string.start)
             } else {
                 timer.start()
-                start.text = getString(R.string.stop)
-                isTimerRunning = true
+                toggle_timer.text = getString(R.string.stop)
             }
+        })
+
+        toggle_timer.setOnClickListener {
+            viewModel.toggleTimer()
         }
     }
 }
