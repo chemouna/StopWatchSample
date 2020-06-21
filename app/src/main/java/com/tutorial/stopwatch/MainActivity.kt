@@ -24,6 +24,10 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+        viewModel.startTime().observe(this, Observer { time ->
+            timer.base = time
+        })
+
         toggle_timer.setOnClickListener {
             viewModel.toggleTimer()
         }
