@@ -8,15 +8,15 @@ import androidx.lifecycle.ViewModel
 class MainViewModel: ViewModel() {
 
     private val isTimerRunning: MutableLiveData<Boolean> = MutableLiveData(false)
-    private val elapsedTime: MutableLiveData<Long> = MutableLiveData(0)
+    private val timerBase: MutableLiveData<Long> = MutableLiveData(0)
     private var startOffset: Long = 0
 
     init {
-        elapsedTime.value = SystemClock.elapsedRealtime()
+        timerBase.value = SystemClock.elapsedRealtime()
     }
 
     fun timerState(): LiveData<Boolean> = isTimerRunning
-    fun startTime(): LiveData<Long> = elapsedTime
+    fun startTime(): LiveData<Long> = timerBase
 
     fun toggleTimer() {
         if (isTimerRunning.value == true) {
@@ -28,12 +28,17 @@ class MainViewModel: ViewModel() {
 
     private fun startTimer() {
         isTimerRunning.value = true
-        elapsedTime.value = SystemClock.elapsedRealtime() - startOffset
+        timerBase.value = SystemClock.elapsedRealtime() - startOffset
     }
 
     private fun stopTimer() {
         isTimerRunning.value = false
-        startOffset = SystemClock.elapsedRealtime()
+        startOffset = SystemClock.elapsedRealtime() - (timerBase.value ?: 0)
     }
 
+    fun resetTimer() {
+        isTimerRunning.value = false
+        startOffset = 0
+        timerBase.value = SystemClock.elapsedRealtime()
+    }
 }

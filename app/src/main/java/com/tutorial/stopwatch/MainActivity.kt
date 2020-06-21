@@ -31,5 +31,8 @@ class MainActivity : AppCompatActivity() {
         toggle_timer.setOnClickListener {
             viewModel.toggleTimer()
         }
+        reset_timer.setOnClickListener {
+            viewModel.resetTimer()
+        }
     }
 }
