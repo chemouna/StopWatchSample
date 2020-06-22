@@ -65,5 +65,5 @@ class MainViewModelTest {
 
         assertEquals(4, mainViewModel.timerBase().value!!)
     }
-    
+
 }

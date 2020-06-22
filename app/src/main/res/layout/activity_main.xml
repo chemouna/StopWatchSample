@@ -4,6 +4,7 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:padding="10dp"
   tools:context=".MainActivity">
 
   <Chronometer
@@ -33,7 +34,15 @@
     android:text="@string/reset"
     android:layout_marginTop="10dp"
     app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintBaseline_toBaselineOf="@id/toggle_timer"/>
+
+  <Button
+    android:id="@+id/lap"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/lap"
+    android:layout_marginTop="10dp"
     app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/toggle_timer"/>
+    app:layout_constraintBaseline_toBaselineOf="@id/toggle_timer"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
