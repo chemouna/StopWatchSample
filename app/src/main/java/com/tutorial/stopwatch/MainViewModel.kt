@@ -1,6 +1,5 @@
 package com.tutorial.stopwatch
 
-import android.os.SystemClock
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,33 +11,33 @@ class MainViewModel: ViewModel() {
     private var stopDiff: Long = 0
 
     init {
-        timerBase.value = SystemClock.elapsedRealtime()
+        timerBase.value = 0
     }
 
     fun timerState(): LiveData<Boolean> = isTimerRunning
     fun timerBase(): LiveData<Long> = timerBase
 
-    fun toggleTimer() {
+    fun toggleTimer(elapsedTime: Long) {
         if (isTimerRunning.value == true) {
-            stopTimer()
+            stopTimer(elapsedTime)
         } else {
-            startTimer()
+            startTimer(elapsedTime)
         }
     }
 
-    private fun startTimer() {
+    private fun startTimer(elapsedTime: Long) {
         isTimerRunning.value = true
-        timerBase.value = SystemClock.elapsedRealtime() - stopDiff
+        timerBase.value = elapsedTime - stopDiff
     }
 
-    private fun stopTimer() {
+    private fun stopTimer(elapsedTime: Long) {
         isTimerRunning.value = false
-        stopDiff = SystemClock.elapsedRealtime() - (timerBase.value ?: 0)
+        stopDiff = elapsedTime - (timerBase.value ?: 0)
     }
 
-    fun resetTimer() {
+    fun resetTimer(elapsedTime: Long) {
         isTimerRunning.value = false
         stopDiff = 0
-        timerBase.value = SystemClock.elapsedRealtime()
+        timerBase.value = elapsedTime
     }
 }

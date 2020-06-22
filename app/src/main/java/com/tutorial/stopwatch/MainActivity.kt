@@ -2,7 +2,7 @@ package com.tutorial.stopwatch
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.os.SystemClock
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_main.*
@@ -29,11 +29,11 @@ class MainActivity : AppCompatActivity() {
         })
 
         toggle_timer.setOnClickListener {
-            viewModel.toggleTimer()
+            viewModel.toggleTimer(SystemClock.elapsedRealtime())
         }
 
         reset_timer.setOnClickListener {
-            viewModel.resetTimer()
+            viewModel.resetTimer(SystemClock.elapsedRealtime())
         }
     }
 }
