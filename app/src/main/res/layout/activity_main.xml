@@ -29,7 +29,6 @@
     android:backgroundTint="@color/button_background"
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintTop_toBottomOf="@id/timer"/>
 
   <Button
@@ -41,7 +40,6 @@
     android:backgroundTint="@color/button_background"
     android:layout_marginTop="10dp"
     app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintBaseline_toBaselineOf="@id/toggle_timer"/>
 
   <Button
@@ -53,7 +51,6 @@
     android:layout_marginTop="10dp"
     android:backgroundTint="@color/button_background"
     app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintBaseline_toBaselineOf="@id/toggle_timer"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
